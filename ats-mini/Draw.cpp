@@ -117,6 +117,33 @@ static void drawRadioText(int y, int ymax)
 //
 static void drawFrequency(uint32_t freq, int x, int y, int ux, int uy)
 {
+  struct Rect
+  {
+    uint16_t x;
+    uint16_t y;
+    uint16_t w;
+    uint16_t h;
+  };
+
+  const Rect hlDigitsFM[] = {
+    { x - 30 - 32 * 0, y - 30, 27, 3 },
+    { x - 30 - 32 * 1, y - 30, 27, 3 },
+    { x - 30 - 32 * 2 - 12, y - 30, 27, 3 },
+    { x - 30 - 32 * 3 - 12, y - 30, 27, 3 },
+    { x - 30 - 32 * 4 + 3, y - 30, 12, 3 },
+  };
+
+  const Rect hlDigitsAMSSB[] = {
+    { 12 + x + 14 * 2, y, 12, 3 },
+    { 12 + x + 14 * 1, y, 12, 3 },
+    { 12 + x + 14 * 0, y, 12, 3 },
+    { x - 30 - 32 * 0, y - 30, 27, 3 },
+    { x - 30 - 32 * 1, y - 30, 27, 3 },
+    { x - 30 - 32 * 2, y - 30, 27, 3 },
+    { x - 30 - 32 * 3, y - 30, 27, 3 },
+    { x - 30 - 32 * 4, y - 30, 27, 3 },
+  };
+
   spr.setTextDatum(MR_DATUM);
   spr.setTextColor(TH.freq_text, TH.bg);
 
@@ -127,6 +154,11 @@ static void drawFrequency(uint32_t freq, int x, int y, int ux, int uy)
     spr.setTextDatum(ML_DATUM);
     spr.setTextColor(TH.funit_text, TH.bg);
     spr.drawString("MHz", ux, uy);
+
+    for (uint8_t i = 0; i < ITEM_COUNT(hlDigitsFM); i++) {
+      const struct Rect *r = &hlDigitsFM[i];
+      spr.fillRoundRect(r->x, r->y, r->w, r->h, 1, TFT_RED);
+    }
   }
   else
   {
@@ -139,19 +171,24 @@ static void drawFrequency(uint32_t freq, int x, int y, int ux, int uy)
       spr.drawString(text, x, y, 7);
       spr.setTextDatum(ML_DATUM);
       sprintf(text, ".%3.3lu", freq % 1000);
-      spr.drawString(text, 5+x, 15+y, 4);
+      spr.drawString(text, 4+x, 17+y, 4);
     }
     else
     {
       // AM frequency
       spr.drawNumber(freq, x, y, 7);
       spr.setTextDatum(ML_DATUM);
-      spr.drawString(".000", 5+x, 15+y, 4);
+      spr.drawString(".000", 4+x, 17+y, 4);
     }
 
     // SSB/AM frequencies are measured in kHz
     spr.setTextColor(TH.funit_text, TH.bg);
     spr.drawString("kHz", ux, uy);
+
+    for (uint8_t i = 0; i < ITEM_COUNT(hlDigitsAMSSB); i++) {
+      const struct Rect *r = &hlDigitsAMSSB[i];
+      spr.fillRoundRect(r->x, r->y, r->w, r->h, 1, TFT_RED);
+    }
   }
 }
 
