@@ -21,6 +21,7 @@ int bandIdx = 0;
 Band bands[] =
 {
 
+  {"MW",   MW_BAND_TYPE, AM,    498,  774,  1800, 1, 4, 0},
   {"FM",  FM_BAND_TYPE, FM,   6400, 10800, 10270, 2, 0, 0},
   // All band. LW, MW and SW (from 150kHz to 30MHz)
   {"ALL",  SW_BAND_TYPE, AM,    150, 30000, 15000, 1, 4, 0},
@@ -45,9 +46,8 @@ Band bands[] =
 //  {"41M",  SW_BAND_TYPE, AM,   7200,  7500,  7300, 1, 4, 0},
 //  {"49M",  SW_BAND_TYPE, AM,   5900,  6200,  6000, 1, 4, 0},
 //  {"60M",  SW_BAND_TYPE, AM,   4700,  5100,  4950, 1, 4, 0},
-  {"MW",   MW_BAND_TYPE, AM,    498,  1701,  1800, 1, 4, 0},
   {"2200M",MW_BAND_TYPE, AM,    135,   138,   136, 1, 4, 0},
-  {"630M", MW_BAND_TYPE, AM,    472,   479,   475, 1, 4, 0},
+  {"630M", MW_BAND_TYPE, AM,    472,   473,   475, 1, 4, 0},
   {"160M", MW_BAND_TYPE, LSB,  1800,  2000,  1900, 1, 4, 0},
   {"90M",  SW_BAND_TYPE, AM,   3200,  3400,  3300, 1, 4, 0},
   {"80M",  SW_BAND_TYPE, LSB,  3300,  4000,  3800, 1, 4, 0},
