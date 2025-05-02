@@ -65,7 +65,7 @@ Band bands[] =
   {"70CM", SW_BAND_TYPE, FM,  43000, 43500, 43825, 2, 4, 0},
   // https://www.hfunderground.com/wiki/CB
   {"27CB", SW_BAND_TYPE, AM,  25000, 30000, 27135, 0, 4, 0},
-  {"UHFCB",SW_BAND_TYPE, FM,  47600, 47750, 47675, 2, , 0},
+  {"UHFCB",SW_BAND_TYPE, FM,  47600, 47750, 47675, 2, 4, 0},
 };
 
 int getTotalBands() { return(ITEM_COUNT(bands)); }
