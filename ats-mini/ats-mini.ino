@@ -19,7 +19,7 @@
 #define DEFAULT_SLEEP            0  // Default sleep interval, range = 0 (off) to 255 in steps of 5
 #define STRENGTH_CHECK_TIME   1500  // Not used
 #define RDS_CHECK_TIME         250  // Increased from 90
-
+#define SEEK_TIMEOUT        600000  // Max seek timeout (ms)
 #define BACKGROUND_REFRESH_TIME 5000    // Background screen refresh time. Covers the situation where there are no other events causing a refresh
 #define TUNE_HOLDOFF_TIME         90    // Timer to hold off display whilst tuning
 
@@ -204,6 +204,7 @@ void setup()
   selectBand(bandIdx, false);
   delay(50);
   rx.setVolume(volume);
+  rx.setMaxSeekTime(SEEK_TIMEOUT);
 
   // Draw display for the first time
   drawScreen();
@@ -403,7 +404,7 @@ void updateFrequency(int newFreq)
 //
 // Handle encoder PRESS + ROTATE
 //
-bool doPressAndRotate(int8_t dir)
+bool doSeek(int8_t dir)
 {
   if(isSSB())
   {
@@ -507,23 +508,24 @@ void loop()
   }
 #endif
 
-  // Block encoder rotation when display is off
+  // Block encoder rotation when in the locked sleep mode
   if(encoderCount && sleepOn() && sleepModeIdx == SLEEP_LOCKED) encoderCount = 0;
 
   // If encoder has been rotated...
   if(encoderCount)
   {
-    elapsedSleep = elapsedCommand = currentTime;
-
     // If encoder has been rotated AND pressed...
     if(pb1st.isPressed && !isModalMode(currentCmd))
     {
-      needRedraw |= doPressAndRotate(encoderCount);
+      needRedraw |= doSeek(encoderCount);
       seekModePress = true;
     }
     else
     {
       needRedraw |= doRotate(encoderCount);
+      // Seek can take long time, renew the timestamp
+      if(currentCmd == CMD_SEEK) currentTime = millis();
+      elapsedSleep = elapsedCommand = currentTime;
     }
 
     // Clear encoder rotation

@@ -37,6 +37,9 @@ Band bands[] =
   {"60M_A", SW_BAND_TYPE, AM,   5300,  5400,  5350, 1, 4, 0},
   {"60M_C", SW_BAND_TYPE, AM,   5400,  5500,  5450, 1, 4, 0},
   {"60M_B",  SW_BAND_TYPE, AM,   4000,  5100,  4950, 1, 4, 0},
+  {"60M",  SW_BAND_TYPE, AM,   4000,  5100,  4950, 1, 4, 0},
+  {"75M",  SW_BAND_TYPE, AM,   3500,  4000,  3950, 1, 4, 0},
+  {"90M",  SW_BAND_TYPE, AM,   3000,  3500,  3300, 1, 4, 0},
 //  {"25M",  SW_BAND_TYPE, AM,  11600, 12100, 11850, 1, 4, 0},
 //  {"31M",  SW_BAND_TYPE, AM,   9400,  9900,  9650, 1, 4, 0},
 //  {"41M",  SW_BAND_TYPE, AM,   7200,  7500,  7300, 1, 4, 0},
@@ -77,13 +80,14 @@ Band *getCurrentBand() { return(&bands[bandIdx]); }
 #define MENU_BAND         1
 #define MENU_VOLUME       2
 #define MENU_STEP         3
-#define MENU_MEMORY       4
-#define MENU_MUTE         5
-#define MENU_BW           6
-#define MENU_AGC_ATT      7
-#define MENU_AVC          8
-#define MENU_SOFTMUTE     9
-#define MENU_SETTINGS     10
+#define MENU_SEEK         4
+#define MENU_MEMORY       5
+#define MENU_MUTE         6
+#define MENU_BW           7
+#define MENU_AGC_ATT      8
+#define MENU_AVC          9
+#define MENU_SOFTMUTE     10
+#define MENU_SETTINGS     11
 
 int8_t menuIdx = MENU_VOLUME;
 
@@ -93,6 +97,7 @@ static const char *menu[] =
   "Band",
   "Volume",
   "Step",
+  "Seek",
   "Memory",
   "Mute",
   "Bandwidth",
@@ -571,6 +576,7 @@ static void clickMenu(int cmd)
   switch(cmd)
   {
     case MENU_STEP:     currentCmd = CMD_STEP;      break;
+    case MENU_SEEK:     currentCmd = CMD_SEEK;      break;
     case MENU_MODE:     currentCmd = CMD_MODE;      break;
     case MENU_BW:       currentCmd = CMD_BANDWIDTH; break;
     case MENU_AGC_ATT:  currentCmd = CMD_AGC;       break;
@@ -641,6 +647,7 @@ bool doSideBar(uint16_t cmd, int dir)
     case CMD_MENU:      doMenu(dir);break;
     case CMD_MODE:      doMode(dir);break;
     case CMD_STEP:      doStep(dir);break;
+    case CMD_SEEK:      doSeek(dir);break;
     case CMD_AGC:       doAgc(dir);break;
     case CMD_BANDWIDTH: doBandwidth(dir);break;
     case CMD_VOLUME:    doVolume(dir);break;
@@ -815,6 +822,16 @@ static void drawStep(int x, int y, int sx)
 
     spr.drawString(steps[currentMode][abs((idx+i)%count)].desc, 40+x+(sx/2), 64+y+(i*16), 2);
   }
+}
+
+static void drawSeek(int x, int y, int sx)
+{
+  drawCommon(menu[MENU_SEEK], x, y, sx);
+  spr.fillRoundRect(6+x, 24+y+(2*16), 66+sx, 16, 2, TH.menu_bg);
+  spr.drawSmoothArc(40+x+(sx/2), 66+y, 23, 20, 45, 180, TH.menu_param, TH.menu_bg);
+  spr.fillTriangle(40+x+(sx/2)-5, 66+y-25, 40+x+(sx/2)+5, 66+y-20, 40+x+(sx/2)-5, 66+y-15, TH.menu_param);
+  spr.drawSmoothArc(40+x+(sx/2), 66+y, 23, 20, 225, 360, TH.menu_param, TH.menu_bg);
+  spr.fillTriangle(40+x+(sx/2)+5, 66+y+25, 40+x+(sx/2)-5, 66+y+20, 40+x+(sx/2)+5, 66+y+15, TH.menu_param);
 }
 
 static void drawBand(int x, int y, int sx)
@@ -1109,6 +1126,7 @@ void drawSideBar(uint16_t cmd, int x, int y, int sx)
     case CMD_SETTINGS:  drawSettings(x, y, sx);  break;
     case CMD_MODE:      drawMode(x, y, sx);      break;
     case CMD_STEP:      drawStep(x, y, sx);      break;
+    case CMD_SEEK:      drawSeek(x, y, sx);      break;
     case CMD_BAND:      drawBand(x, y, sx);      break;
     case CMD_BANDWIDTH: drawBandwidth(x, y, sx); break;
     case CMD_THEME:     drawTheme(x, y, sx);     break;

@@ -5,7 +5,7 @@
 #include <TFT_eSPI.h>
 #include <SI4735-fixed.h>
 
-#define APP_VERSION    212  // FIRMWARE VERSION
+#define APP_VERSION    213  // FIRMWARE VERSION
 #define EEPROM_VERSION 70   // EEPROM VERSION (forces reset)
 
 // Modes
@@ -122,6 +122,7 @@ static inline bool isSSB() { return(currentMode>FM && currentMode<AM); }
 
 void useBand(const Band *band);
 void updateBFO(int newBFO);
+bool doSeek(int8_t dir);
 
 // Utils.c
 void loadSSB(uint8_t bandwidth, bool draw = true);
