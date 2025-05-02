@@ -60,12 +60,12 @@ Band bands[] =
   {"15M",  SW_BAND_TYPE, USB, 21000, 21500, 21225, 1, 4, 0},
   {"12M",  SW_BAND_TYPE, USB, 24800, 25000, 24900, 1, 4, 0},
   {"10M",  SW_BAND_TYPE, USB, 28000, 29700, 28500, 1, 4, 0},
-  {"6M",   SW_BAND_TYPE, FM,   5000,  5400,  5100, 2, 4, 0},
-  {"2M",   SW_BAND_TYPE, FM,  14400, 14800, 14565, 2, 4, 0},
-  {"70CM", SW_BAND_TYPE, FM,  43000, 43500, 43825, 2, 4, 0},
+  {"6M",   SW_BAND_TYPE, FM,   5000,  5400,  5100, 1, 4, 0},
+  {"2M",   SW_BAND_TYPE, FM,  14400, 14800, 14565, 1, 4, 0},
+  {"70CM", SW_BAND_TYPE, FM,  43000, 43500, 43825, 1, 4, 0},
   // https://www.hfunderground.com/wiki/CB
-  {"27CB", SW_BAND_TYPE, AM,  25000, 30000, 27135, 0, 4, 0},
-  {"UHFCB",SW_BAND_TYPE, FM,  47600, 47750, 47675, 2, 4, 0},
+  {"27CB", SW_BAND_TYPE, AM,  25000, 30000, 27135, 1, 4, 0},
+  {"UHFCB",SW_BAND_TYPE, FM,  47600, 47750, 47675, 1, 5, 0},
 };
 
 int getTotalBands() { return(ITEM_COUNT(bands)); }
@@ -257,7 +257,9 @@ static const Bandwidth fmBandwidths[] =
   { 1, "110k" }, // Force wide (110 kHz) channel filter.
   { 2, "84k"  },
   { 3, "60k"  },
-  { 4, "40k"  }
+  { 4, "40k"  },
+  { 5, "12.5k"},
+  { 6, "6.5k" }
 };
 
 static const Bandwidth ssbBandwidths[] =
