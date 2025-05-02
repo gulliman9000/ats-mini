@@ -47,9 +47,9 @@ Band bands[] =
 //  {"60M",  SW_BAND_TYPE, AM,   4700,  5100,  4950, 1, 4, 0},
   {"75M",  SW_BAND_TYPE, AM,   3900,  4000,  3950, 1, 4, 0},
   {"MW",   MW_BAND_TYPE, AM,    498,  1701,  1800, 1, 4, 0},
-  {"2200M",MW_BAND_TYPE, AM,    135,   138,   136, 1, 4, 0},
-  {"630M", MW_BAND_TYPE, AM,    472,   479,   475, 1, 4, 0},
-  {"160M", MW_BAND_TYPE, LSB,  1800,  2000,  1900, 1, 4, 0},
+  {"2200M",SW_BAND_TYPE, AM,    135,   138,   136, 1, 4, 0},
+  {"630M", SW_BAND_TYPE, AM,    472,   479,   475, 1, 4, 0},
+  {"160M", SW_BAND_TYPE, LSB,  1800,  2000,  1900, 1, 4, 0},
   {"90M",  SW_BAND_TYPE, AM,   3200,  3400,  3300, 1, 4, 0},
   {"80M",  SW_BAND_TYPE, LSB,  3300,  4000,  3800, 1, 4, 0},
   {"60M",  SW_BAND_TYPE, LSB,  5350,  5370,  5360, 1, 4, 0},
@@ -60,12 +60,12 @@ Band bands[] =
   {"15M",  SW_BAND_TYPE, USB, 21000, 21500, 21225, 1, 4, 0},
   {"12M",  SW_BAND_TYPE, USB, 24800, 25000, 24900, 1, 4, 0},
   {"10M",  SW_BAND_TYPE, USB, 28000, 29700, 28500, 1, 4, 0},
-  {"6M",   FM_BAND_TYPE, FM,   5000,  5400,  5100, 2, 0, 0},
-  {"2M",   FM_BAND_TYPE, FM,  14400, 14800, 14565, 2, 0, 0},
-  {"70CM", FM_BAND_TYPE, FM,  43000, 43500, 43825, 2, 0, 0},
+  {"6M",   SW_BAND_TYPE, FM,   5000,  5400,  5100, 2, 4, 0},
+  {"2M",   SW_BAND_TYPE, FM,  14400, 14800, 14565, 2, 4, 0},
+  {"70CM", SW_BAND_TYPE, FM,  43000, 43500, 43825, 2, 4, 0},
   // https://www.hfunderground.com/wiki/CB
   {"27CB", SW_BAND_TYPE, AM,  25000, 30000, 27135, 0, 4, 0},
-  {"UHFCB",FM_BAND_TYPE, FM,  47600, 47750, 47675, 2, 0, 0},
+  {"UHFCB",SW_BAND_TYPE, FM,  47600, 47750, 47675, 2, , 0},
 };
 
 int getTotalBands() { return(ITEM_COUNT(bands)); }
