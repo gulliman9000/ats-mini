@@ -21,7 +21,7 @@ int bandIdx = 0;
 Band bands[] =
 {
 
-  {"BROADCAST",  FM_BAND_TYPE, FM,   6400, 15000, 10270, 2, 0, 0},
+  {"BROADCAST",  FM_BAND_TYPE, FM,   5000, 10800, 10270, 2, 0, 0},
   // All band. LW, MW and SW (from 150kHz to 30MHz)
   {"ALL",  SW_BAND_TYPE, AM,    150, 30000, 15000, 1, 4, 0},
   {"11M",  SW_BAND_TYPE, AM,  25600, 26100, 25850, 1, 4, 0},
@@ -60,7 +60,7 @@ Band bands[] =
   {"15M",  SW_BAND_TYPE, USB, 21000, 21500, 21225, 1, 4, 0},
   {"12M",  SW_BAND_TYPE, USB, 24800, 25000, 24900, 1, 4, 0},
   {"10M",  SW_BAND_TYPE, USB, 28000, 29700, 28500, 1, 4, 0},
-  {"6M",   FM_BAND_TYPE, FM,   5000,  5400,  5100, 1, 4, 0},
+  {"6M",   SW_BAND_TYPE, USB, 50000,  4000, 51000, 1, 4, 0},
   // https://www.hfunderground.com/wiki/CB
   {"27CB", SW_BAND_TYPE, AM,  25000, 30000, 27135, 1, 4, 0},
 };
