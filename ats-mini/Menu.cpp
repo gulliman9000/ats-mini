@@ -21,7 +21,7 @@ int bandIdx = 0;
 Band bands[] =
 {
 
-  {"BROADCAST",  FM_BAND_TYPE, FM,   5000, 10800, 10270, 2, 0, 0},
+  {"FM",  FM_BAND_TYPE, FM,   6400, 10800, 10270, 2, 0, 0},
   // All band. LW, MW and SW (from 150kHz to 30MHz)
   {"ALL",  SW_BAND_TYPE, AM,    150, 30000, 15000, 1, 4, 0},
   {"11M",  SW_BAND_TYPE, AM,  25600, 26100, 25850, 1, 4, 0},
@@ -45,7 +45,6 @@ Band bands[] =
 //  {"41M",  SW_BAND_TYPE, AM,   7200,  7500,  7300, 1, 4, 0},
 //  {"49M",  SW_BAND_TYPE, AM,   5900,  6200,  6000, 1, 4, 0},
 //  {"60M",  SW_BAND_TYPE, AM,   4700,  5100,  4950, 1, 4, 0},
-  {"75M",  SW_BAND_TYPE, AM,   3900,  4000,  3950, 1, 4, 0},
   {"MW",   MW_BAND_TYPE, AM,    498,  1701,  1800, 1, 4, 0},
   {"2200M",MW_BAND_TYPE, AM,    135,   138,   136, 1, 4, 0},
   {"630M", MW_BAND_TYPE, AM,    472,   479,   475, 1, 4, 0},
@@ -60,7 +59,6 @@ Band bands[] =
   {"15M",  SW_BAND_TYPE, USB, 21000, 21500, 21225, 1, 4, 0},
   {"12M",  SW_BAND_TYPE, USB, 24800, 25000, 24900, 1, 4, 0},
   {"10M",  SW_BAND_TYPE, USB, 28000, 29700, 28500, 1, 4, 0},
-  {"6M",   SW_BAND_TYPE, USB, 50000,  4000, 51000, 1, 4, 0},
   // https://www.hfunderground.com/wiki/CB
   {"27CB", SW_BAND_TYPE, AM,  25000, 30000, 27135, 1, 4, 0},
 };
